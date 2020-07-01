@@ -1,0 +1,4 @@
+Get-VMHost | Add-VMHostNtpServer 192.168.1.1,192.168.2.1
+Get-VMHost | Get-VMHostFirewallException | where {$_.Name -eq "NTP client"} | Set-VMHostFirewallException -Enabled:$true
+Get-VMHost | Get-VmHostService | Where-Object {$_.key -eq "ntpd"} | Start-VMHostService
+Get-VMhost | Get-VmHostService | Where-Object {$_.key -eq "ntpd"} | Set-VMHostService -policy "on"
